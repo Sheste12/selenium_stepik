@@ -32,3 +32,14 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def get_element(self, element):
+        assert self.is_element_present(*element), \
+            f"{element[1]} is not presented!"
+        return self.browser.find_element(*element)
+
+
+    @staticmethod
+    def check_name(first_element_name, second_element_name):
+        assert first_element_name == second_element_name, \
+            f"The correct name should be {first_element_name} instead of {second_element_name}."
