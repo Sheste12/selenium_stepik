@@ -2,6 +2,7 @@ from .pages.product_page import ProductPage
 from selenium.webdriver import Remote
 import pytest
 
+@pytest.mark.skip()
 @pytest.mark.parametrize(
     'link',
     [
@@ -41,3 +42,15 @@ class TestProductPage:
         page.open()
         page.click_button_add_to_basket()
         page.check_if_page_has_success_message()
+
+def test_guest_should_see_login_link_on_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_be_login_link()
+
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_login_page()

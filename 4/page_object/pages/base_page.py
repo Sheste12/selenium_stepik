@@ -2,6 +2,7 @@ from selenium.webdriver import Remote
 from selenium.common.exceptions import *
 from selenium.webdriver.support.ui import WebDriverWait as WDW
 from selenium.webdriver.support import expected_conditions as EC
+from .locators import BasePageLocators
 import math
 
 class BasePage():
@@ -62,3 +63,10 @@ class BasePage():
     def check_name(first_element_name, second_element_name):
         assert first_element_name == second_element_name, \
             f"The correct name should be {first_element_name} instead of {second_element_name}."
+
+    def go_to_login_page(self):
+        link = self.get_element(BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
