@@ -2,6 +2,19 @@ from .base_page import BasePage
 from .locators import LoginPageLocators
 
 class LoginPage(BasePage):
+    def register_new_user(self, email, password):
+        self.go_to_login_page()
+        self.should_be_register_form()
+        email_registraion = self.get_element(LoginPageLocators.EMAIL_REGISTRATION)
+        email_registraion.send_keys(email)
+        password_registration = self.get_element(LoginPageLocators.PASSWORD_REGISTRATION)
+        password_registration_confirm = self.get_element(LoginPageLocators.PASSWORD_REGISTRATION_CONFIRM)
+        for p in (password_registration, password_registration_confirm):
+            p.send_keys(password)
+        btn = self.get_element(LoginPageLocators.REGISTRATION_BUTTON)
+        btn.click()
+        self.should_be_authorized_user()
+
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()
