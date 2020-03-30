@@ -18,3 +18,4 @@ class ProductPageLocators():
     ADD_TO_BASKET_PRODUCT_NAME = (By.CSS_SELECTOR, "#messages .alert:first-child .alertinner strong")
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main > .price_color")
     PRODUCT_TOTAL = (By.CSS_SELECTOR, "#messages .alert:last-child .alertinner strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert:first-child")
