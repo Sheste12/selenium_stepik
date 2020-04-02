@@ -30,7 +30,7 @@ class Links:
         ["http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"]
     )
     LOGIN_PAGE = (
-        "link",
+        "login_page_link",
         ["http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"]
     )
     MAIN_PAGE = (

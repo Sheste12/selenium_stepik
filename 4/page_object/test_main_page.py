@@ -6,6 +6,7 @@ from selenium.webdriver import Remote
 import pytest
 
 class TestLoginFromMainPage:
+    @pytest.mark.xfail(reason="В текущей странице продукта отсутствует верная ссылка на страницу логина.")
     @pytest.mark.parametrize(*Links.THIRD_PRODUCT_PAGE)
     def test_guest_can_go_to_login_page(self, browser: Remote, link):
         page = MainPage(browser, link)
@@ -14,8 +15,7 @@ class TestLoginFromMainPage:
         login_page = LoginPage(browser, browser.current_url)
         login_page.should_be_login_page()
 
-    @pytest.mark.parametrize("link",
-        ["http://selenium1py.pythonanywhere.com/"])
+    @pytest.mark.parametrize(*Links.MAIN_PAGE)
     def test_guest_cant_see_product_in_basket_opened_from_main_page(self, browser: Remote, link):
         page = MainPage(browser, link)
         page.open()
